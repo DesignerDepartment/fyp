@@ -1,0 +1,5 @@
+sceneSetups:
+- path: C:/Users/Muhamad Amirul/Downloads/Compressed/PourEffect-master/PourEffect-master/Assets/Main.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
