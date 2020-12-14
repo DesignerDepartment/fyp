@@ -28,6 +28,8 @@ public class SC_FPSController : MonoBehaviour
 
 	public Arrow red = null;
 
+	public INTR_Corpse Ebutton = null;
+
 
 
 	CharacterController characterController; 
@@ -46,12 +48,16 @@ public class SC_FPSController : MonoBehaviour
 
 
 	//ambikAir
-
-
 	private Animator body;
 
 	[HideInInspector]
 	public bool canMove = true;
+
+	//curah air
+	[SerializeField] private Animator curah;
+	[SerializeField] private Animator cedokAirBersih;
+	ParticleSystem myWater;
+	public Spill spill;
 
 	void Start()
 	{
@@ -63,7 +69,8 @@ public class SC_FPSController : MonoBehaviour
 
 		body = GetComponent<Animator>();
 
-		
+		myWater = GetComponent<ParticleSystem>();
+
 
 	}
 
@@ -75,17 +82,14 @@ public class SC_FPSController : MonoBehaviour
 		showTextSugi();
 		showTextGlove();
 		showTextKapas();
-		redToGreen();
+		//redToGreen();
 		showTextAir();
-
+		showbuttonE();
 
 
 		if (Input.GetButton("Fire1") )
 		{
-			
 			interactItem();
-
-			
 		}
 
 		if (Input.GetButton("Fire2"))
@@ -93,22 +97,32 @@ public class SC_FPSController : MonoBehaviour
 			release();
 		}
 
-
-
 		if (Input.GetButton("Fire2"))
 		{
 			cedokAir();
 			
-			//stopTunduk();
-
 		}
 
-		if (Input.GetButton("Space"))
+		if (Input.GetKeyDown(KeyCode.E))
 		{
-
-			body.enabled = false;
-
+			curah.SetBool("ambilAir", false);
+			curah.SetBool("curah", true);
+			curah.SetBool("Grabbed", true);
+			spill.spill();
+			//curahAir();
 		}
+
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			
+			curah.SetBool("curah", false);
+			spill.Stopspill();
+			//curahAir();
+		}
+
+
+
+
 
 
 
@@ -195,8 +209,13 @@ public class SC_FPSController : MonoBehaviour
 			{
 				oldGayung = gayung;
 				gayung.showTextGayung();
+			
 			}
-			else oldGayung.unshowTextGayung();
+			else
+			{
+				oldGayung.unshowTextGayung();
+			}
+				
 		}
 	}
 
@@ -277,7 +296,7 @@ public class SC_FPSController : MonoBehaviour
 		}
 	}
 
-	public void redToGreen()
+	/*public void redToGreen()
 	{
 
 		RaycastHit detect;
@@ -294,6 +313,29 @@ public class SC_FPSController : MonoBehaviour
 				redToGreen.showGreen();
 			}
 			
+		}
+	}
+	*/
+
+	public void showbuttonE()
+	{
+
+		RaycastHit detect;
+
+		UnityEngine.Debug.Log("buttonE");
+		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out detect, range))
+		{
+
+			INTR_Corpse button = detect.transform.GetComponent<INTR_Corpse>();
+			if (button != null)
+			{
+				Ebutton = button;
+				button.showButtonE();
+			}
+			else {
+				Ebutton.unshowButtonE();
+			}
+
 		}
 	}
 
@@ -379,14 +421,14 @@ public class SC_FPSController : MonoBehaviour
 		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out detect, range)) {
 
 
-			if (!not_full) { 
+			if (not_full) { 
 
 				//release gayung
 				PadObject padGayung = detect.transform.GetComponent<PadObject>();
 				if (padGayung != null)
 				{
 					padGayung.releaseGayung();
-					kanan.idle();
+					//kanan.idle();
 					not_full = true;
 				}
 
@@ -395,7 +437,7 @@ public class SC_FPSController : MonoBehaviour
 				if (padSabun != null)
 				{
 					padSabun.releaseSabun();
-					kanan.idle();
+					//kanan.idle();
 					not_full = true;
 				}
 			}
@@ -403,6 +445,38 @@ public class SC_FPSController : MonoBehaviour
 
 		}
 
+	}
+
+	//curah air
+	public void curahAir()
+	{
+		RaycastHit detectCorpse;
+		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out detectCorpse, range))
+		{
+
+			INTR_Corpse corpse = detectCorpse.transform.GetComponent<INTR_Corpse>();
+			if (corpse != null)
+			{
+				UnityEngine.Debug.Log("dah cedok");
+
+				curah.SetBool("ambilAir", false);
+				curah.SetBool("curah", true);
+
+				if (Vector3.Angle(Vector3.down, transform.forward) <= 90f)
+				{
+					myWater.Play();
+				}
+				else
+				{
+					myWater.Stop();
+				}
+
+			}
+			else {
+				
+				curah.SetBool("curah", false);
+			}
+		}
 	}
 
 	public void cedokAir() {
@@ -416,7 +490,7 @@ public class SC_FPSController : MonoBehaviour
 			{
 				UnityEngine.Debug.Log("dah cedok");
 				//baldi.cedokAir();
-				body.enabled = true;
+				//body.enabled = true;
 				cedok.cedok();
 				kanan.cedok();
 				//kanan.pointerCedok();
@@ -430,6 +504,8 @@ public class SC_FPSController : MonoBehaviour
 		}
 	}
 
+	
+
 	public void stopTunduk() {
 
 		if (ambilAir == true)
@@ -442,7 +518,9 @@ public class SC_FPSController : MonoBehaviour
 		
 
 	}
+
 	
+
 
 }
 

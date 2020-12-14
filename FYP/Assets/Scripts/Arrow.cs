@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    public GameObject arrowRed;
-    public GameObject arrowGreen;
+    public GameObject arrowRedTanganKiri;
+    public GameObject arrowGreenTanganKiri;
 
     // Start is called before the first frame update
     void Start()
@@ -21,28 +21,31 @@ public class Arrow : MonoBehaviour
 
     public void showRed() {
 
-        arrowRed.SetActive(true);
+        arrowRedTanganKiri.SetActive(true);
 
     }
 
     public void showGreen()
     {
 
-        arrowGreen.SetActive(true);
+        arrowGreenTanganKiri.SetActive(true);
 
     }
 
     public void unshowRed()
     {
 
-        arrowRed.SetActive(false);
+        arrowRedTanganKiri.SetActive(false);
 
     }
 
     public void unshowGreen()
     {
 
-        arrowGreen.SetActive(false);
+        arrowGreenTanganKiri.SetActive(false);
 
     }
+
+
+
 }

@@ -79,13 +79,34 @@ public class AnimationTangan : MonoBehaviour
 
     }
 
-    public void stopTunduk()
+    public void curah()
     {
 
-        player.enabled = false;
+
+        player.SetTrigger("curah");
+        Debug.Log("curah air");
 
     }
 
+    public void sabun()
+    {
+
+
+        player.SetTrigger("sabun");
+
+        Debug.Log("sabun");
+
+    }
+
+    public void unsabun()
+    {
+
+
+        player.ResetTrigger("sabun");
+
+        Debug.Log("sabun");
+
+    }
 
 
 
