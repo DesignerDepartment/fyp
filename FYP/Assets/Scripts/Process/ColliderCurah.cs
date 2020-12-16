@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class ColliderCurah : MonoBehaviour
 {
-    //[SerializeField] private Animator curah;
+    [SerializeField] private Animator curah;
 
-    public GameObject ArrowRedTanganKiriCollider;
-    public GameObject ArrowGreenTanganKiriCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -20,25 +18,25 @@ public class ColliderCurah : MonoBehaviour
 
     }
 
-    private void OnTrigger(Collider other)
+    private void OnTriggerEnter (Collider other)
     {
-        if (other.CompareTag("Air"))
+        if (other.CompareTag("PLayer"))
         {
-            ArrowRedTanganKiriCollider.SetActive(false);
+            curah.SetBool("curah", false);
         }
     }
 
-    /*
+   
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Air"))
+        if (other.CompareTag("PLayer"))
         {
 
-            curah.SetBool("curah", false);
+          
 
         }
     }
-    */
+    
 
    
 }

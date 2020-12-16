@@ -45,9 +45,6 @@ public class SC_FPSController : MonoBehaviour
 
 	//ambilAir
 	public bool ambilAir = false;
-
-
-	//ambikAir
 	private Animator body;
 
 	[HideInInspector]
@@ -55,9 +52,32 @@ public class SC_FPSController : MonoBehaviour
 
 	//curah air
 	[SerializeField] private Animator curah;
+	[SerializeField] private Animator particle1;
 	[SerializeField] private Animator cedokAirBersih;
 	ParticleSystem myWater;
 	public Spill spill;
+	private Animator particle;
+	public Spill particleAir;
+	public bool curahAir = false;
+
+	//moveToPointer
+	public Transform pointer;
+	public float Targetspeed;
+	public bool move = false;
+
+	//sabun
+	public bool sabun = false;
+
+	//angkat mayat
+	[SerializeField] private Animator mayat;
+	[SerializeField] private Animator angkat;
+	public int angkatMayat = 0;
+
+	//canvas
+	[SerializeField] private Animator Canvas;
+	public int keyVisible = 0;
+
+	public bool particleActive = false;
 
 	void Start()
 	{
@@ -71,7 +91,59 @@ public class SC_FPSController : MonoBehaviour
 
 		myWater = GetComponent<ParticleSystem>();
 
+		
 
+	}
+
+
+	IEnumerator timetakenCurah()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Started Coroutine at timestamp : " + Time.time);
+		//yield on a new YieldInstruction that waits for 5 seconds.
+		yield return new WaitForSeconds(5);
+		curah.SetBool("curah", false);
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+	}
+
+	IEnumerator timetakenAngkatMayat()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Started Coroutine at timestamp : " + Time.time);
+		//yield on a new YieldInstruction that waits for 5 seconds.
+		yield return new WaitForSeconds(21);
+		angkat.SetBool("angkat", false);
+		mayat.SetBool("mayat", false);
+		body.enabled = false;
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+	}
+
+	IEnumerator timetakenSabun()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Started Coroutine at timestamp : " + Time.time);
+		//yield on a new YieldInstruction that waits for 5 seconds.
+		yield return new WaitForSeconds(4);
+		curah.SetBool("sabun", false);
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+	}
+
+	IEnumerator timetakenKey()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Started Coroutine at timestamp : " + Time.time);
+		//yield on a new YieldInstruction that waits for 5 seconds.
+		yield return new WaitForSeconds(1);
+		Canvas.SetBool("idle", false);
+		Canvas.SetBool("key", false);
+		Canvas.SetBool("idleInfo", false);
+		Canvas.SetBool("info", false);
+		Canvas.SetBool("empty", true);
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("Finished Coroutine at timestamp : " + Time.time);
 	}
 
 	void Update()
@@ -84,7 +156,6 @@ public class SC_FPSController : MonoBehaviour
 		showTextKapas();
 		//redToGreen();
 		showTextAir();
-		showbuttonE();
 
 
 		if (Input.GetButton("Fire1") )
@@ -103,37 +174,89 @@ public class SC_FPSController : MonoBehaviour
 			
 		}
 
+		//curah
 		if (Input.GetKeyDown(KeyCode.E))
 		{
 			curah.SetBool("ambilAir", false);
 			curah.SetBool("curah", true);
-			curah.SetBool("Grabbed", true);
-			spill.spill();
+			curahAir = true;
+
+			if (curahAir == true)
+			{
+				//5 saat
+				StartCoroutine(timetakenCurah());
+			}
 			//curahAir();
 		}
 
-		if (Input.GetKeyDown(KeyCode.R))
+		//sabun
+		if (Input.GetKeyDown(KeyCode.F))
 		{
+			curah.SetBool("sabun", true);
+			curah.SetBool("Grabbed", false);
+			sabun = true;
+
+			if (sabun == true)
+			{
+				//5 saat
+				StartCoroutine(timetakenSabun());
+				sabun = false;
+			}
+
+		}
+
+
+		//TODO: guna count, if count = 1 setBool true else setBool false
+
+		if (Input.GetKeyDown(KeyCode.Q))
+		{
+			move = true;
 			
-			curah.SetBool("curah", false);
-			spill.Stopspill();
-			//curahAir();
+			//moveToPointer();
+			angkat.SetBool("angkat", true);
+			mayat.SetBool("mayat", true);
+			body.enabled = true;
+			if (move == true)
+			{
+				//5 saat
+				StartCoroutine(timetakenAngkatMayat());
+				move = false;
+			}
+
+
+		}
+
+		if (Input.GetKeyDown(KeyCode.LeftShift))
+		{
+			Canvas.SetBool("empty", false);
+
+			if (keyVisible == 0) {
+				Canvas.SetBool("key", true);
+				Canvas.SetBool("idle",false);
+				//Canvas.SetBool("idle", false);
+				keyVisible = 1;
+			}else
+			{
+				Canvas.SetBool("idle", true);
+				Canvas.SetBool("key", false);
+				//Canvas.SetBool("idle", false);
+				keyVisible = 0;
+				StartCoroutine(timetakenKey());
+			}
+		
+		}
+
+		if (move.Equals(true)) {
+			moveToPointer();
+			
 		}
 
 
 
 
+			// We are grounded, so recalculate move direction based on axes
 
-
-
-
-
-
-
-
-		// We are grounded, so recalculate move direction based on axes
-
-		Vector3 forward = transform.TransformDirection(Vector3.forward);
+			Vector3 forward = transform.TransformDirection(Vector3.forward);
 		Vector3 right = transform.TransformDirection(Vector3.right);
 		
 		// Press Left Shift to run
@@ -178,6 +301,22 @@ public class SC_FPSController : MonoBehaviour
 		}
 	}
 
+	//gerakKePointer
+	public void moveToPointer() {
+		
+		characterController.enabled = false;
+
+		while (transform.position != pointer.position)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, pointer.position, Targetspeed * Time.deltaTime);
+
+		}
+		
+			
+		UnityEngine.Debug.Log("Move to pointer");
+		
+	}
+
 	public void showTextSabun() {
 
 		RaycastHit detect;
@@ -195,6 +334,8 @@ public class SC_FPSController : MonoBehaviour
 		}
 	}
 
+
+	
 	public void showTextGayung()
 	{
 
@@ -209,11 +350,15 @@ public class SC_FPSController : MonoBehaviour
 			{
 				oldGayung = gayung;
 				gayung.showTextGayung();
-			
+
+					Canvas.SetBool("info", true);
 			}
 			else
 			{
 				oldGayung.unshowTextGayung();
+				Canvas.SetBool("idleInfo", true);
+				Canvas.SetBool("info", false);
+				StartCoroutine(timetakenKey());
 			}
 				
 		}
@@ -317,27 +462,7 @@ public class SC_FPSController : MonoBehaviour
 	}
 	*/
 
-	public void showbuttonE()
-	{
-
-		RaycastHit detect;
-
-		UnityEngine.Debug.Log("buttonE");
-		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out detect, range))
-		{
-
-			INTR_Corpse button = detect.transform.GetComponent<INTR_Corpse>();
-			if (button != null)
-			{
-				Ebutton = button;
-				button.showButtonE();
-			}
-			else {
-				Ebutton.unshowButtonE();
-			}
-
-		}
-	}
+	
 
 	public void interactItem() {
 
@@ -447,37 +572,7 @@ public class SC_FPSController : MonoBehaviour
 
 	}
 
-	//curah air
-	public void curahAir()
-	{
-		RaycastHit detectCorpse;
-		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out detectCorpse, range))
-		{
-
-			INTR_Corpse corpse = detectCorpse.transform.GetComponent<INTR_Corpse>();
-			if (corpse != null)
-			{
-				UnityEngine.Debug.Log("dah cedok");
-
-				curah.SetBool("ambilAir", false);
-				curah.SetBool("curah", true);
-
-				if (Vector3.Angle(Vector3.down, transform.forward) <= 90f)
-				{
-					myWater.Play();
-				}
-				else
-				{
-					myWater.Stop();
-				}
-
-			}
-			else {
-				
-				curah.SetBool("curah", false);
-			}
-		}
-	}
+	
 
 	public void cedokAir() {
 

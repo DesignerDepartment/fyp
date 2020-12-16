@@ -110,8 +110,4 @@ public class AnimationTangan : MonoBehaviour
 
 
 
-
-
-
-
 }

@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\PLAYER\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\GerakkanSugi.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Gayung.cs" />
+    <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Corpse.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Arrow.cs" />
     <Compile Include="Assets\Scripts\OthersScene\TetapanNav.cs" />
@@ -75,9 +76,11 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\AnimationBody.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Kapas.cs" />
+    <Compile Include="Assets\Scripts\CollisionTanganKiri.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Scripts\Quiz.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
+    <Compile Include="Assets\Scripts\Process\Spill.cs" />
     <Compile Include="Assets\Scripts\AnimationTangan.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
@@ -112,8 +115,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_SarungTangan.cs" />
     <Compile Include="Assets\Scripts\Main\MenuNav.cs" />
-    <Compile Include="Assets\Scripts\Process\Spill.cs" />
-    <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Corpse.cs" />
+    <Compile Include="Assets\Scripts\Process\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\Process\AngkatMayat.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

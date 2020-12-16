@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spill : MonoBehaviour
 {
     ParticleSystem myWater;
-    public GameObject water;
+    Animator particle;
 
     // Start is called before the first frame update
     void Start()
@@ -26,19 +26,8 @@ public class Spill : MonoBehaviour
         
     }
 
-    public void spill() {
-        myWater.Play();
-    }
+   
 
-    public void Stopspill()
-    {
-        myWater.Stop();
-    }
-
-    public void showSpill() {
-
-        water.SetActive(true);
     
-    }
 
 }
