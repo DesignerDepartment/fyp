@@ -41,17 +41,25 @@ public class INTR_Sabun : MonoBehaviour
 
 
         handle.transform.SetParent(myHand.transform);
+        unshowArrow();
 
         //alwaysGrab();
 
     }
 
+    public Transform playerCam;
+    public float throwForce = 10;
 
     public void release()
     {
-        sabun.transform.forward = pointerTempatSabun.transform.forward;
-        sabun.transform.position = pointerTempatSabun.transform.position;
-        sabun.transform.SetParent(pointerTempatSabun.transform);
+        //sabun.transform.forward = pointerTempatSabun.transform.forward;
+        //sabun.transform.position = pointerTempatSabun.transform.position;
+        //sabun.transform.SetParent(pointerTempatSabun.transform);
+
+        GetComponent<Rigidbody>().isKinematic = false;
+        sabun.transform.SetParent(null);
+        GetComponent<Rigidbody>().AddForce(playerCam.forward * throwForce);
+
     }
 
 
@@ -68,4 +76,15 @@ public class INTR_Sabun : MonoBehaviour
         namaSabun.SetActive(false);
 
     }
+
+    public GameObject arrowSabun;
+
+    public void unshowArrow()
+    {
+
+        arrowSabun.SetActive(false);
+
+    }
+
+    
 }

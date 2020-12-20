@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ColliderCurah : MonoBehaviour
 {
-    [SerializeField] private Animator curah;
-
+    public GameObject detect;
 
     // Start is called before the first frame update
     void Start()
     {
+        detect.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class ColliderCurah : MonoBehaviour
     {
         if (other.CompareTag("PLayer"))
         {
-            curah.SetBool("curah", false);
+            detect.SetActive(true);
         }
     }
 
@@ -32,7 +32,7 @@ public class ColliderCurah : MonoBehaviour
         if (other.CompareTag("PLayer"))
         {
 
-          
+            detect.SetActive(false);
 
         }
     }

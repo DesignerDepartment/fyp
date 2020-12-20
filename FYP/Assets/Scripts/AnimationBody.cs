@@ -20,10 +20,7 @@ public class AnimationBody : MonoBehaviour
 
     public void cedok()
     {
-
-
         player.SetTrigger("air");
         Debug.Log("tunduk");
-
     }
 }

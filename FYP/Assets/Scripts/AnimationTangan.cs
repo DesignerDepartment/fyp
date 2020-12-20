@@ -50,8 +50,7 @@ public class AnimationTangan : MonoBehaviour
     public void idle()
     {
 
-
-        player.SetTrigger("idle");
+        player.SetBool("idle", true);
         Debug.Log("idle");
 
     }
