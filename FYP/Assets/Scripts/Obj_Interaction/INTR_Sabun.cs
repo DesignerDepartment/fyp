@@ -10,6 +10,8 @@ public class INTR_Sabun : MonoBehaviour
     public GameObject sabun;
     public GameObject namaSabun;
     public GameObject handle;
+    public GameObject sabunIndicator;
+    public GameObject arrowProcessSabun;
 
     //release
     public GameObject tempatSabun;
@@ -18,7 +20,7 @@ public class INTR_Sabun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        arrowProcessSabun.SetActive(false);
     }
 
     // Update is called once per frame
@@ -42,6 +44,11 @@ public class INTR_Sabun : MonoBehaviour
 
         handle.transform.SetParent(myHand.transform);
         unshowArrow();
+        sabunIndicator.SetActive(false);
+
+        arrowProcessSabun.SetActive(true);
+
+        //GetComponent<Rigidbody>().isKinematic = true;
 
         //alwaysGrab();
 
@@ -52,13 +59,13 @@ public class INTR_Sabun : MonoBehaviour
 
     public void release()
     {
-        //sabun.transform.forward = pointerTempatSabun.transform.forward;
-        //sabun.transform.position = pointerTempatSabun.transform.position;
-        //sabun.transform.SetParent(pointerTempatSabun.transform);
+        handle.transform.forward = pointerTempatSabun.transform.forward;
+        handle.transform.position = pointerTempatSabun.transform.position;
+        handle.transform.SetParent(pointerTempatSabun.transform);
 
-        GetComponent<Rigidbody>().isKinematic = false;
-        sabun.transform.SetParent(null);
-        GetComponent<Rigidbody>().AddForce(playerCam.forward * throwForce);
+       // GetComponent<Rigidbody>().isKinematic = false;
+        //handle.transform.SetParent(null);
+       // GetComponent<Rigidbody>().AddForce(playerCam.forward * throwForce);
 
     }
 

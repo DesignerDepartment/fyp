@@ -56,11 +56,14 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Process\ColliderCurah.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Scripts\PLAYER\SimpleCameraController.cs" />
+    <Compile Include="Assets\CollideActionSabun.cs" />
     <Compile Include="Assets\Scripts\GerakkanSugi.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Gayung.cs" />
+    <Compile Include="Assets\Scripts\PLAYER2\SC_FPS PLayer.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Corpse.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Arrow.cs" />
@@ -102,6 +105,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\INTR_SabunCon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\PadObject.cs" />
@@ -119,16 +123,14 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Baldi.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
+    <Compile Include="Assets\INTR_GayungCon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_SarungTangan.cs" />
     <Compile Include="Assets\Scripts\hose\RopeRoot.cs" />
     <Compile Include="Assets\Scripts\Main\MenuNav.cs" />
     <Compile Include="Assets\Scripts\Process\CollisionTanganKanan.cs" />
-    <Compile Include="Assets\Scripts\PLAYER2\SC_FPS PLayer.cs" />
-    <Compile Include="Assets\PlayerController.cs" />
-    <Compile Include="Assets\INTR_GayungCon.cs" />
-    <Compile Include="Assets\INTR_SabunCon.cs" />
-    <Compile Include="Assets\CollideActionSabun.cs" />
+    <Compile Include="Assets\ChangeToGlove.cs" />
+    <Compile Include="Assets\INTR_GayungBilasSabun.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
