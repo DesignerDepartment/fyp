@@ -17,11 +17,19 @@ public class INTR_Sabun : MonoBehaviour
     public GameObject tempatSabun;
     public GameObject pointerTempatSabun;
 
+    public GameObject gayungBilasSabun;
+    public GameObject gayungBasuhanPertama;
+
+    public GameObject arrowSabunkanJenazah;
+
     // Start is called before the first frame update
     void Start()
     {
         arrowProcessSabun.SetActive(false);
+        arrowSabunkanJenazah.SetActive(false);
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -41,7 +49,7 @@ public class INTR_Sabun : MonoBehaviour
         handle.transform.forward = myHand.transform.forward;
         handle.transform.position = myHand.transform.position;
 
-
+        GetComponent<Rigidbody>().isKinematic = true;
         handle.transform.SetParent(myHand.transform);
         unshowArrow();
         sabunIndicator.SetActive(false);
@@ -52,6 +60,8 @@ public class INTR_Sabun : MonoBehaviour
 
         //alwaysGrab();
 
+        arrowSabunkanJenazah.SetActive(true);
+
     }
 
     public Transform playerCam;
@@ -59,14 +69,20 @@ public class INTR_Sabun : MonoBehaviour
 
     public void release()
     {
-        handle.transform.forward = pointerTempatSabun.transform.forward;
-        handle.transform.position = pointerTempatSabun.transform.position;
-        handle.transform.SetParent(pointerTempatSabun.transform);
+        //handle.transform.forward = pointerTempatSabun.transform.forward;
+        //handle.transform.position = pointerTempatSabun.transform.position;
+        //handle.transform.SetParent(pointerTempatSabun.transform);
 
-       // GetComponent<Rigidbody>().isKinematic = false;
-        //handle.transform.SetParent(null);
-       // GetComponent<Rigidbody>().AddForce(playerCam.forward * throwForce);
+        GetComponent<Rigidbody>().isKinematic = false;
+        handle.transform.SetParent(null);
+        GetComponent<Rigidbody>().AddForce(playerCam.forward * throwForce);
 
+        gayungBilasSabun.SetActive(true);
+        gayungBasuhanPertama.SetActive(false);
+
+        arrowProcessSabun.SetActive(false);
+
+        arrowSabunkanJenazah.SetActive(false);
     }
 
 

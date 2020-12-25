@@ -10,9 +10,16 @@ public class camMouseLook : MonoBehaviour
 
 	GameObject character;
 
+	private Animator playCamera;
+
+	public GameObject playIndicator;
+
 	void Start()
 	{
+		playCamera = GetComponent<Animator>();
 		character = this.transform.parent.gameObject;
+		playCamera.enabled = false;
+		playIndicator.SetActive(false);
 	}
 
 	void Update()
@@ -26,6 +33,26 @@ public class camMouseLook : MonoBehaviour
 		transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
 		character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
 
+		if (playIndicator.activeSelf == true) {
+
+			playCamera.enabled = true;
+			StartCoroutine(cameraPlayTimer());
+
+		}
+
 	}
+
+	IEnumerator cameraPlayTimer()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Start noti gayung");
+		//yield on a new YieldInstruction that waits for 5 seconds.
+		yield return new WaitForSeconds(23);
+		playIndicator.SetActive(false);
+		playCamera.enabled = false;
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("Start noti gayung");
+	}
+
 }
 

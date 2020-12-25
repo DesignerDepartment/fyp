@@ -33,8 +33,18 @@ public class INTR_SarungTangan : MonoBehaviour
     public GameObject Pointer;
     public GameObject ArrowAngkat;
     public GameObject ArrowIndicatorGlove;
-    public GameObject gayungIndicator;
+    //public GameObject gayungIndicator;
 
+    public GameObject indicatorInfoGayungGlove;
+    public GameObject indicatorInfoGayungGlove2;
+
+    public GameObject arrowMerahKakiKanan;
+    public GameObject arrowMerahKakiKiri;
+    public GameObject arrowMerahTanganKanan;
+    public GameObject arrowMerahTanganKiri;
+    public GameObject arrowMerahKepala;
+    public GameObject infoGayungGlove;
+    public GameObject arrowGlove;
 
 
     public void grab()
@@ -46,15 +56,18 @@ public class INTR_SarungTangan : MonoBehaviour
         //rend.sharedMaterial = material[1];
         Glove.SetActive(false);
         ArrowIndicatorGlove.SetActive(false);
+        indicatorInfoGayungGlove2.SetActive(false);
+
         //alwaysGrab();
-        gayungIndicator.SetActive(true);
+        //gayungIndicator.SetActive(true);
         if (ArrowIndicatorGlove.activeSelf == false)
         {
             ArrowAngkat.SetActive(true);
             circleAngkat.SetActive(true);
             Pointer.SetActive(true);
-
         }
+
+       
 
     }
 
@@ -71,8 +84,8 @@ public class INTR_SarungTangan : MonoBehaviour
 
     }
 
-    public GameObject gloveKanan;
-    public GameObject gloveKiri;
+   // public GameObject gloveKanan;
+    //public GameObject gloveKiri;
     public GameObject Kiri;
     public GameObject Kanan;
     public GameObject Glove;
@@ -100,8 +113,8 @@ public class INTR_SarungTangan : MonoBehaviour
     public void throwGlove()
     {
 
-        gloveKanan.SetActive(false);
-        gloveKiri.SetActive(false);
+       // gloveKanan.SetActive(false);
+       // gloveKiri.SetActive(false);
 
     }
 

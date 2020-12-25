@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\GrabGayung.cs" />
     <Compile Include="Assets\Scripts\hose\DistanceJoint3D.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\ChangeToGlove.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Sugi.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\Process\CollKakiKiri.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Kapas.cs" />
     <Compile Include="Assets\Scripts\Process\CollisionTanganKiri.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
+    <Compile Include="Assets\gayungBaru.cs" />
     <Compile Include="Assets\Scripts\Quiz.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\Scripts\Process\Spill.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\INTR_SabunCon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
+    <Compile Include="Assets\INTR_GayungBilasSabun.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\PadObject.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
@@ -117,6 +120,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
+    <Compile Include="Assets\cameraAngkat.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Scripts\Process\CollKakiKanan.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
@@ -129,8 +133,7 @@
     <Compile Include="Assets\Scripts\hose\RopeRoot.cs" />
     <Compile Include="Assets\Scripts\Main\MenuNav.cs" />
     <Compile Include="Assets\Scripts\Process\CollisionTanganKanan.cs" />
-    <Compile Include="Assets\ChangeToGlove.cs" />
-    <Compile Include="Assets\INTR_GayungBilasSabun.cs" />
+    <Compile Include="Assets\waterspill.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -30,6 +30,8 @@ public class INTR_Gayung : MonoBehaviour
         ArrowAngkat.SetActive(false);
 
         ArrowGlove.SetActive(false);
+
+
     }
 
     // Update is called once per frame
@@ -63,10 +65,7 @@ public class INTR_Gayung : MonoBehaviour
 
         showArrowAmbilAir();
 
-       
-
     }
-
 
     public Transform playerCam;
     public float throwForce = 10;
@@ -96,6 +95,23 @@ public class INTR_Gayung : MonoBehaviour
 
     public GameObject errorSiram;
 
+    public GameObject notiGayung;
+
+    public GameObject ambilBarangButton;
+
+    public GameObject basuhanPertama;
+
+
+    IEnumerator unnotiGayung()
+    {
+        //Print the time of when the function is first called.
+        UnityEngine.Debug.Log("Start noti gayung");
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(6);
+        notiGayung.SetActive(false);
+        //After we have waited 5 seconds print the time again.
+        UnityEngine.Debug.Log("Start noti gayung");
+    }
     public void release() {
 
         //handle.transform.SetParent(pointerTempatGayung.transform);
@@ -121,6 +137,7 @@ public class INTR_Gayung : MonoBehaviour
             {
 
                 ArrowGlove.SetActive(true);
+                
                 //
             }
 
@@ -137,6 +154,11 @@ public class INTR_Gayung : MonoBehaviour
             dr.material.SetColor("_Color", Color.green);
 
             air.SetActive(false);
+
+            basuhanPertama.SetActive(false);
+
+
+
         }
 
         
@@ -150,6 +172,7 @@ public class INTR_Gayung : MonoBehaviour
     {
 
         namaGayung.SetActive(true);
+        ambilBarangButton.SetActive(true);
 
     }
 
@@ -157,6 +180,7 @@ public class INTR_Gayung : MonoBehaviour
     {
 
         namaGayung.SetActive(false);
+        ambilBarangButton.SetActive(false);
 
     }
 
