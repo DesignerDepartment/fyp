@@ -22,6 +22,10 @@ public class INTR_Sabun : MonoBehaviour
 
     public GameObject arrowSabunkanJenazah;
 
+    public GameObject pointerSabun;
+
+    public GameObject arrowGayung2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +65,7 @@ public class INTR_Sabun : MonoBehaviour
         //alwaysGrab();
 
         arrowSabunkanJenazah.SetActive(true);
+        pointerSabun.SetActive(true);
 
     }
 
@@ -83,6 +88,8 @@ public class INTR_Sabun : MonoBehaviour
         arrowProcessSabun.SetActive(false);
 
         arrowSabunkanJenazah.SetActive(false);
+
+        arrowGayung2.SetActive(true);
     }
 
 

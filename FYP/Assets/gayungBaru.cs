@@ -62,7 +62,9 @@ public class gayungBaru : MonoBehaviour
 
         arrowGayung2.SetActive(false);
 
-        arrowCedokBilasSabun.SetActive(false);
+        arrowCedokBilasSabun.SetActive(true);
+
+        
 
 
 

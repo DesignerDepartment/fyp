@@ -88,6 +88,7 @@
     <Compile Include="Assets\gayungBaru.cs" />
     <Compile Include="Assets\Scripts\Quiz.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
+    <Compile Include="Assets\waterspill.cs" />
     <Compile Include="Assets\Scripts\Process\Spill.cs" />
     <Compile Include="Assets\Scripts\AnimationTangan.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
@@ -133,7 +134,7 @@
     <Compile Include="Assets\Scripts\hose\RopeRoot.cs" />
     <Compile Include="Assets\Scripts\Main\MenuNav.cs" />
     <Compile Include="Assets\Scripts\Process\CollisionTanganKanan.cs" />
-    <Compile Include="Assets\waterspill.cs" />
+    <Compile Include="Assets\gayungWudhu.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

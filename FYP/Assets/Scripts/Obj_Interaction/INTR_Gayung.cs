@@ -16,6 +16,8 @@ public class INTR_Gayung : MonoBehaviour
     //release
     public GameObject tempatGayung;
 
+    public GameObject curahDetecter;
+
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +66,8 @@ public class INTR_Gayung : MonoBehaviour
         unshowArrow();
 
         showArrowAmbilAir();
+
+        curahDetecter.SetActive(false);
 
     }
 
