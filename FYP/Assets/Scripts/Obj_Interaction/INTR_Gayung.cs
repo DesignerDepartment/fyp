@@ -40,13 +40,11 @@ public class INTR_Gayung : MonoBehaviour
     void Update()
     {
 
-        ;
-        if (arrowMerahTanganKanan.activeSelf == false && arrowMerahTanganKiri.activeSelf == false && arrowMerahKakiKanan.activeSelf == false && arrowMerahKakiKiri.activeSelf == false)
+        if (arrowMerahTanganKanan.activeSelf == false && arrowMerahTanganKiri.activeSelf == false && arrowMerahKakiKanan.activeSelf == false && arrowMerahKakiKiri.activeSelf == false && arrowMerahKepala.activeSelf == false)
         {
             air.SetActive(false);
         }
 
-        
     }
 
 
@@ -101,7 +99,6 @@ public class INTR_Gayung : MonoBehaviour
 
     public GameObject notiGayung;
 
-    public GameObject ambilBarangButton;
 
     public GameObject basuhanPertama;
 
@@ -157,7 +154,7 @@ public class INTR_Gayung : MonoBehaviour
             var dr = LangkahKedua.GetComponent<Renderer>();
             dr.material.SetColor("_Color", Color.green);
 
-            air.SetActive(false);
+            
 
             basuhanPertama.SetActive(false);
 
@@ -176,7 +173,6 @@ public class INTR_Gayung : MonoBehaviour
     {
 
         namaGayung.SetActive(true);
-        ambilBarangButton.SetActive(true);
 
     }
 
@@ -184,7 +180,6 @@ public class INTR_Gayung : MonoBehaviour
     {
 
         namaGayung.SetActive(false);
-        ambilBarangButton.SetActive(false);
 
     }
 

@@ -68,10 +68,6 @@ public class SC_FPSController : MonoBehaviour
 	[SerializeField] private Animator cameraAngkatMayat;
 	[SerializeField] private Animator particle1;
 	[SerializeField] private Animator cedokAirBersih;
-	ParticleSystem myWater;
-	public Spill spill;
-	private Animator particle;
-	public Spill particleAir;
 	public bool curahAir = false;
 
 	//moveToPointer
@@ -124,8 +120,6 @@ public class SC_FPSController : MonoBehaviour
 
 		body = GetComponent<Animator>();
 
-		myWater = GetComponent<ParticleSystem>();
-
 		UnshowArrowProcess();
 
 		airCurahan.SetActive(false);
@@ -167,11 +161,15 @@ public class SC_FPSController : MonoBehaviour
 		arrowCedokAirWudhu.SetActive(false);
 		PointerSabun.SetActive(false);
 
-		
+		notiLetakSabun.SetActive(false);
+		notiWudhu.SetActive(false);
 
 	}
 
 	public GameObject bodyBersih;
+	public GameObject airCurahan2;
+
+
 
 	IEnumerator timetakenCurah()
 	{
@@ -180,12 +178,22 @@ public class SC_FPSController : MonoBehaviour
 		//yield on a new YieldInstruction that waits for 5 seconds.
 		yield return new WaitForSeconds(2);
 		curah.SetBool("curah", false);
-		airCurahan.SetActive(false);
 		basuhanKepala();
 		basuhanKakiKiri();
 		basuhanKakiKanan();
 		basuhanTanganKiri();
 		basuhanTanganKanan();
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+	}
+
+	IEnumerator timetakenAirBilasSabun()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Started Coroutine at timestamp : " + Time.time);
+		//yield on a new YieldInstruction that waits for 5 seconds.
+		yield return new WaitForSeconds(2);
+		airBilas.SetActive(false);
 		//After we have waited 5 seconds print the time again.
 		UnityEngine.Debug.Log("Finished Coroutine at timestamp : " + Time.time);
 	}
@@ -198,7 +206,6 @@ public class SC_FPSController : MonoBehaviour
 		//yield on a new YieldInstruction that waits for 5 seconds.
 		yield return new WaitForSeconds(2);
 		curah.SetBool("curah", false);
-		airCurahan.SetActive(false);
 		//After we have waited 5 seconds print the time again.
 		UnityEngine.Debug.Log("End Bilas Sabun");
 	}
@@ -211,7 +218,6 @@ public class SC_FPSController : MonoBehaviour
 		//yield on a new YieldInstruction that waits for 5 seconds.
 		yield return new WaitForSeconds(2);
 		curah.SetBool("curah", false);
-		airCurahan.SetActive(false);
 		kiri.SetBool("wudhu", false);
 		kiri.SetBool("idle", true);
 		//After we have waited 5 seconds print the time again.
@@ -223,7 +229,7 @@ public class SC_FPSController : MonoBehaviour
 		//Print the time of when the function is first called.
 		UnityEngine.Debug.Log("Mula angkat mayat ");
 		//yield on a new YieldInstruction that waits for 5 seconds.
-		yield return new WaitForSeconds(20);
+		yield return new WaitForSeconds(18);
 		//angkat.SetBool("angkat", false);
 		mayat.SetBool("mayat", false);
 		curah.SetBool("idle", true);
@@ -256,6 +262,18 @@ public class SC_FPSController : MonoBehaviour
 		curah.SetBool("sabun", false);
 		//After we have waited 5 seconds print the time again.
 		UnityEngine.Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+	}
+
+	IEnumerator timetakenAirCurahan()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("start keluar air");
+		//yield on a new YieldInstruction that waits for 5 seconds.
+		yield return new WaitForSeconds(4);
+		airCurahan.SetActive(false);
+		airCurahan2.SetActive(true);
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("stop keluar air");
 	}
 
 	IEnumerator timetakenKey()
@@ -323,7 +341,9 @@ public class SC_FPSController : MonoBehaviour
 		UnityEngine.Debug.Log("Start noti gayung");
 	}
 
-	
+
+
+
 
 	public Transform detecter1;
 	public Transform detecter2;
@@ -421,48 +441,40 @@ public class SC_FPSController : MonoBehaviour
 	public GameObject arrowWudhukanJenazah;
 	public GameObject arrowCedokAirWudhu;
 	public GameObject PointerSabun;
-
 	public GameObject airBilas;
-
 	public GameObject arrowAmbilairBilasSabun;
-
-
 	public int count = 0;
-
 	public GameObject gayung3;
+	public GameObject airGayung2;
+	public GameObject notiWudhu;
 
 	/// <summary>
-	/// 
 	/// notification:
 	/// - lepas basuhan pertama(arahan untuk letak gayung dan pakai glove)
 	/// - sebelum angkat mayat(bagitahu cara2 angkat mayat, handle mayat dengan lembut dan sopan)
 	/// - selepas letak mayat 
-	/// 
-	/// 
 	/// belum siap:
-	/// 
 	/// - effect kotoran lepas tekan perut (guna startTimeCount)
 	/// - arrow untuk amik air
 	/// - cedok air
 	/// - siram mayat(animate siram active bila dekat dengan mayat & show air,unshow kotoran)
-	/// 
 	/// - guna arrow merah(duplicate), if sabunStay true, then arrow hijau
 	/// - bilas sabun
 	/// - arrow untuk amir air
 	/// - cedok air
 	/// - siram mayat(animate siram active bila dekat dengan mayat & show air,unshow sabunStay)
-	/// 
-	/// 
-	/// 
-	/// 
 	/// error/problem:
-	/// 
-	/// 
 	/// </summary>
+
+	public GameObject namaAir;
+	public GameObject notiLetakSabun;
+
+	public GameObject detecterSabunMayat;
+	public GameObject detecterCurah;
+	public GameObject detecterSiram;
 
 	void Update()
 	{
-		
 		if (arrowSiramMerahTanganKiri.activeSelf == false && arrowSiramMerahTanganKanan.activeSelf == false && arrowSiramMerahKakiKiri.activeSelf == false && arrowSiramMerahKakiKanan.activeSelf == false && arrowSiramMerahKepala.activeSelf == false && indicatorInfoGayungGlove.activeSelf == true && indicatorInfoGayungGlove2.activeSelf == true)
 		{
 			notiGayung.SetActive(true);
@@ -470,6 +482,8 @@ public class SC_FPSController : MonoBehaviour
 		else {
 			notiGayung.SetActive(false);
 		}
+
+
 		
 
 		showTextSabun();
@@ -482,6 +496,25 @@ public class SC_FPSController : MonoBehaviour
 
 		showButtonCurah();
 
+		if (namaAir.activeSelf == true)
+		{
+			rightClick.SetActive(true);
+		}
+		else {
+			rightClick.SetActive(false);
+		}
+
+		if (namaGayung.activeSelf == true || namaGlove.activeSelf == true || namaSabun.activeSelf == true || namaGayung2.activeSelf == true)
+		{
+			leftClick.SetActive(true);
+		}
+		else {
+			leftClick.SetActive(false);
+		}
+
+		if (airBilasSabun.activeSelf == true) {
+			notiLetakSabun.SetActive(false);
+		}
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// Grab Release -start- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -503,7 +536,6 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					if (curahAir == true)
 					{
 						//5 saat
@@ -530,7 +562,6 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					arrowWudhuLenganKiri.SetActive(false);
 					if (curahAir == true)
 					{
@@ -546,7 +577,6 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					arrowWudhuLenganKanan.SetActive(false);
 					if (curahAir == true)
 					{
@@ -561,7 +591,6 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					arrowWudhuKakiKiri.SetActive(false);
 					if (curahAir == true)
 					{
@@ -577,7 +606,6 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					arrowWudhuKakiKanan.SetActive(false);
 					if (curahAir == true)
 					{
@@ -592,7 +620,6 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					arrowWudhuKepala.SetActive(false);
 					if (curahAir == true)
 					{
@@ -696,6 +723,8 @@ public class SC_FPSController : MonoBehaviour
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// Curah button -start- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+		//
+
 		//display button E
 		if (curahDetecter.activeSelf == true) {
 
@@ -715,20 +744,18 @@ public class SC_FPSController : MonoBehaviour
 		{
 			if (nakAmbil == true)
 			{
-
 				if (gayung1.activeSelf == true && arrowCedokAirWudhu.activeSelf == false)
 				{
 					cedokAir();
 					arrowBasuhan.SetActive(true);
 					nakAmbil = false;
-					count = 1;
 
 				}
 				else if (gayung2.activeSelf == true && arrowCedokAirWudhu.activeSelf == false)
 				{
 					cedokAirBilasSabun();
 					nakAmbil = false;
-					count = 2;
+					notiLetakSabun.SetActive(false);
 
 				}
 				else if (gayung2.activeSelf == true && arrowCedokAirWudhu.activeSelf == true)
@@ -736,11 +763,10 @@ public class SC_FPSController : MonoBehaviour
 					cedokAirWudhu();
 					arrowWudhukanJenazah.SetActive(true);
 					nakAmbil = false;
-					count = 0;
+					notiWudhu.SetActive(false);
 				}
 				else { 
-					//sila ke baldi untuk cedok air
-				
+					//sila ambil gayung noti
 				}
 			}
 			else
@@ -753,12 +779,45 @@ public class SC_FPSController : MonoBehaviour
 		// - active arrow amik gayung 2 - 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// Curah -start- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+		//set active E button to false when f button activeSelf == true
+		if (f.activeSelf == true) {
+			e.SetActive(false);
+		}
+
+		//set active E button to false when f button activeSelf == true
+		if (c.activeSelf == true)
+		{
+			e.SetActive(false);
+			f.SetActive(false);
+			buttonE.SetActive(false);
+		}
+
+		if (buttonE.activeSelf == true)
+		{
+			e.SetActive(false);
+			f.SetActive(false);
+		}
+
+		if (arrowWudhukanJenazah.activeSelf == true) {
+
+			detecterSabunMayat.SetActive(false);
+			detecterCurah.SetActive(false);
+			detecterSiram.SetActive(false);
+
+		}
+
+		// keyDown E funtion
 		if (Input.GetKeyDown(KeyCode.E))
 		{
+			
 
 			//-------------------------------------------------------------------------------------------------bilas sabun
 			if (gayung2.activeSelf == true && wudhuDetecter.activeSelf == false)
 			{
+				airCurahan2.SetActive(true);
+
+				StartCoroutine(timetakenAirCurahan());
+
 				//kaki kiri
 				if ((Vector3.Distance(transform.position, detecter6.position) <= 2))
 				{
@@ -766,13 +825,15 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
+					
 					StartCoroutine(timetakenBilasSabun());
 
 					if (buihKakiKiriStay.activeSelf == false  && buihKakiKananStay.activeSelf == false && buihTanganKiriStay.activeSelf == false && buihTanganKananStay.activeSelf == false && buihKepalaStay.activeSelf == false)
 					{
-						airBilas.SetActive(false);
+						//airBilas.SetActive(false);
+						StartCoroutine(timetakenAirBilasSabun());
 						arrowCedokAirWudhu.SetActive(true);
+						notiWudhu.SetActive(true);
 					}	
 				}
 
@@ -783,13 +844,13 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					StartCoroutine(timetakenBilasSabun());
 
 					if (buihKakiKiriStay.activeSelf == false && buihKakiKananStay.activeSelf == false && buihTanganKiriStay.activeSelf == false && buihTanganKananStay.activeSelf == false && buihKepalaStay.activeSelf == false)
 					{
-						airBilas.SetActive(false);
+						StartCoroutine(timetakenAirBilasSabun());
 						arrowCedokAirWudhu.SetActive(true);
+						notiWudhu.SetActive(true);
 					}
 
 				}
@@ -801,13 +862,13 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					StartCoroutine(timetakenBilasSabun());
 
 					if (buihKakiKiriStay.activeSelf == false && buihKakiKananStay.activeSelf == false && buihTanganKiriStay.activeSelf == false && buihTanganKananStay.activeSelf == false && buihKepalaStay.activeSelf == false)
 					{
-						airBilas.SetActive(false);
+						StartCoroutine(timetakenAirBilasSabun());
 						arrowCedokAirWudhu.SetActive(true);
+						notiWudhu.SetActive(true);
 					}
 
 				}
@@ -819,13 +880,13 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					StartCoroutine(timetakenBilasSabun());
 
 					if (buihKakiKiriStay.activeSelf == false && buihKakiKananStay.activeSelf == false && buihTanganKiriStay.activeSelf == false && buihTanganKananStay.activeSelf == false && buihKepalaStay.activeSelf == false)
 					{
-						airBilas.SetActive(false);
+						StartCoroutine(timetakenAirBilasSabun());
 						arrowCedokAirWudhu.SetActive(true);
+						notiWudhu.SetActive(true);
 					}
 
 				}
@@ -837,13 +898,13 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					StartCoroutine(timetakenBilasSabun());
 
 					if (buihKakiKiriStay.activeSelf == false && buihKakiKananStay.activeSelf == false && buihTanganKiriStay.activeSelf == false && buihTanganKananStay.activeSelf == false && buihKepalaStay.activeSelf == false)
 					{
-						airBilas.SetActive(false);
+						StartCoroutine(timetakenAirBilasSabun());
 						arrowCedokAirWudhu.SetActive(true);
+						notiWudhu.SetActive(true);
 					}
 
 				}
@@ -852,12 +913,15 @@ public class SC_FPSController : MonoBehaviour
 
 			//-------------------------------------------------------------------------------------------------siram basuhan pertama
 			if (gayung1.activeSelf == true) {
-				
-					UnityEngine.Debug.Log("Arrow hilang ");
+
+				airCurahan.SetActive(true);
+
+				StartCoroutine(timetakenAirCurahan());
+
+				UnityEngine.Debug.Log("Arrow hilang ");
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					StartCoroutine(timetakenCurah());
 
 			}
@@ -865,6 +929,9 @@ public class SC_FPSController : MonoBehaviour
 			//-------------------------------------------------------------------------------------------------siram wudhu
 			if (gayung2.activeSelf == true && wudhuDetecter.activeSelf == true)
 			{
+				airCurahan2.SetActive(true);
+
+				StartCoroutine(timetakenAirCurahan());
 
 				if (clickC.activeSelf == true && arrowWudhu.activeSelf == true)
 				{
@@ -875,11 +942,14 @@ public class SC_FPSController : MonoBehaviour
 						curah.SetBool("ambilAir", false);
 						curah.SetBool("curah", true);
 						curahAir = true;
-						airCurahan.SetActive(true);
 						kiri.SetBool("wudhu", true);
 						kiri.SetBool("idle", false);
 						StartCoroutine(timetakenWudhu());
 
+                        if (arrowWudhuKakiKanan.activeSelf == false && arrowWudhuKakiKiri.activeSelf == false && arrowWudhuKepala.activeSelf == false && arrowWudhuLenganKanan.activeSelf == false && arrowWudhuLenganKiri.activeSelf == false)
+						{
+							airGayung2.SetActive(false);
+						}
 
 					}
 					else if ((Vector3.Distance(transform.position, triggerwudhuTanganKiri.position) <= 2))
@@ -889,10 +959,14 @@ public class SC_FPSController : MonoBehaviour
 						curah.SetBool("ambilAir", false);
 						curah.SetBool("curah", true);
 						curahAir = true;
-						airCurahan.SetActive(true);
 						kiri.SetBool("wudhu", true);
 						kiri.SetBool("idle", false);
 						StartCoroutine(timetakenWudhu());
+
+						if (arrowWudhuKakiKanan.activeSelf == false && arrowWudhuKakiKiri.activeSelf == false && arrowWudhuKepala.activeSelf == false && arrowWudhuLenganKanan.activeSelf == false && arrowWudhuLenganKiri.activeSelf == false)
+						{
+							airGayung2.SetActive(false);
+						}
 					}
 					else if ((Vector3.Distance(transform.position, triggerwudhuKakiKanan.position) <= 2))
 					{
@@ -901,10 +975,14 @@ public class SC_FPSController : MonoBehaviour
 						curah.SetBool("ambilAir", false);
 						curah.SetBool("curah", true);
 						curahAir = true;
-						airCurahan.SetActive(true);
 						kiri.SetBool("wudhu", true);
 						kiri.SetBool("idle", false);
 						StartCoroutine(timetakenWudhu());
+
+						if (arrowWudhuKakiKanan.activeSelf == false && arrowWudhuKakiKiri.activeSelf == false && arrowWudhuKepala.activeSelf == false && arrowWudhuLenganKanan.activeSelf == false && arrowWudhuLenganKiri.activeSelf == false)
+						{
+							airGayung2.SetActive(false);
+						}
 					}
 					else if ((Vector3.Distance(transform.position, triggerwudhuKakiKiri.position) <= 2))
 					{
@@ -913,10 +991,14 @@ public class SC_FPSController : MonoBehaviour
 						curah.SetBool("ambilAir", false);
 						curah.SetBool("curah", true);
 						curahAir = true;
-						airCurahan.SetActive(true);
 						kiri.SetBool("wudhu", true);
 						kiri.SetBool("idle", false);
 						StartCoroutine(timetakenWudhu());
+
+						if (arrowWudhuKakiKanan.activeSelf == false && arrowWudhuKakiKiri.activeSelf == false && arrowWudhuKepala.activeSelf == false && arrowWudhuLenganKanan.activeSelf == false && arrowWudhuLenganKiri.activeSelf == false)
+						{
+							airGayung2.SetActive(false);
+						}
 					}
 					else if ((Vector3.Distance(transform.position, triggerwudhuKepala.position) <= 2))
 					{
@@ -925,10 +1007,14 @@ public class SC_FPSController : MonoBehaviour
 						curah.SetBool("ambilAir", false);
 						curah.SetBool("curah", true);
 						curahAir = true;
-						airCurahan.SetActive(true);
 						kiri.SetBool("wudhu", true);
 						kiri.SetBool("idle", false);
 						StartCoroutine(timetakenWudhu());
+
+						if (arrowWudhuKakiKanan.activeSelf == false && arrowWudhuKakiKiri.activeSelf == false && arrowWudhuKepala.activeSelf == false && arrowWudhuLenganKanan.activeSelf == false && arrowWudhuLenganKiri.activeSelf == false)
+						{
+							airGayung2.SetActive(false);
+						}
 					}
 					else
 					{
@@ -985,6 +1071,13 @@ public class SC_FPSController : MonoBehaviour
 						buihKakiKiriAnimate.SetActive(true);
 						StartCoroutine(buihAnimate());
 						arrowSabunMerahKakiKiri.SetActive(false);
+
+						if (buihKakiKiriStay.activeSelf == true && buihKakiKananStay.activeSelf == true && buihTanganKiriStay.activeSelf == true && buihTanganKananStay.activeSelf == true && buihKepalaStay.activeSelf == true)
+						{
+							notiLetakSabun.SetActive(true);
+
+						}
+
 					}
 
 					//kaki kanan
@@ -999,6 +1092,12 @@ public class SC_FPSController : MonoBehaviour
 						buihKakiKananAnimate.SetActive(true);
 						StartCoroutine(buihAnimate());
 						arrowSabunMerahKakiKanan.SetActive(false);
+
+						if (buihKakiKiriStay.activeSelf == true && buihKakiKananStay.activeSelf == true && buihTanganKiriStay.activeSelf == true && buihTanganKananStay.activeSelf == true && buihKepalaStay.activeSelf == true)
+						{
+							notiLetakSabun.SetActive(true);
+
+						}
 					}
 
 					//tanganKiri
@@ -1013,6 +1112,12 @@ public class SC_FPSController : MonoBehaviour
 						buihTanganKiriAnimate.SetActive(true);
 						StartCoroutine(buihAnimate());
 						arrowSabunMerahTanganKiri.SetActive(false);
+
+						if (buihKakiKiriStay.activeSelf == true && buihKakiKananStay.activeSelf == true && buihTanganKiriStay.activeSelf == true && buihTanganKananStay.activeSelf == true && buihKepalaStay.activeSelf == true)
+						{
+							notiLetakSabun.SetActive(true);
+
+						}
 					}
 
 					//tanganKanan
@@ -1029,6 +1134,12 @@ public class SC_FPSController : MonoBehaviour
 						StartCoroutine(buihAnimate());
 						arrowSabunMerahTanganKanan.SetActive(false);
 
+						if (buihKakiKiriStay.activeSelf == true && buihKakiKananStay.activeSelf == true && buihTanganKiriStay.activeSelf == true && buihTanganKananStay.activeSelf == true && buihKepalaStay.activeSelf == true)
+						{
+							notiLetakSabun.SetActive(true);
+
+						}
+
 					}
 
 					//kepala
@@ -1044,6 +1155,12 @@ public class SC_FPSController : MonoBehaviour
 						buihKepalaAnimate.SetActive(true);
 						StartCoroutine(buihAnimate());
 						arrowSabunMerahKepala.SetActive(false);
+
+						if (buihKakiKiriStay.activeSelf == true && buihKakiKananStay.activeSelf == true && buihTanganKiriStay.activeSelf == true && buihTanganKananStay.activeSelf == true && buihKepalaStay.activeSelf == true)
+						{
+							notiLetakSabun.SetActive(true);
+
+						}
 
 					}
 
@@ -1154,6 +1271,9 @@ public class SC_FPSController : MonoBehaviour
 		//keyDown Wudhu
 		if (Input.GetKeyDown(KeyCode.C)) {
 
+			airCurahan.SetActive(true);
+			StartCoroutine(timetakenAirCurahan());
+
 			if (clickC.activeSelf == true && arrowWudhu.activeSelf == true)
 			{
 				if ((Vector3.Distance(transform.position, triggerwudhuTanganKanan.position) <= 2))
@@ -1163,7 +1283,6 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					kiri.SetBool("wudhu", true);
 					kiri.SetBool("idle", false);
 					StartCoroutine(timetakenWudhu());
@@ -1175,7 +1294,6 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					kiri.SetBool("wudhu", true);
 					kiri.SetBool("idle", false);
 					StartCoroutine(timetakenWudhu());
@@ -1187,7 +1305,6 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					kiri.SetBool("wudhu", true);
 					kiri.SetBool("idle", false);
 					StartCoroutine(timetakenWudhu());
@@ -1199,7 +1316,6 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					kiri.SetBool("wudhu", true);
 					kiri.SetBool("idle", false);
 					StartCoroutine(timetakenWudhu());
@@ -1211,7 +1327,6 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("ambilAir", false);
 					curah.SetBool("curah", true);
 					curahAir = true;
-					airCurahan.SetActive(true);
 					kiri.SetBool("wudhu", true);
 					kiri.SetBool("idle", false);
 					StartCoroutine(timetakenWudhu());
@@ -1236,10 +1351,9 @@ public class SC_FPSController : MonoBehaviour
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// display Text E -start- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		if (Vector3.Distance(transform.position, pointerAngkatMayat.position) <= 1)
 		{
-
 			buttonE.SetActive(true);
 		}
-		else {
+		else{
 			buttonE.SetActive(false);
 		}
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// display Text E -end- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1777,10 +1891,10 @@ public class SC_FPSController : MonoBehaviour
 	public CollKakiKiri arrowDetectKakiKiri;
 	public CollKepala arrowDetectKepala;
 
-	public void basuhanTanganKiri() {
+	public void basuhanTanganKiri()
+	{
 		arrowDetectTanagnKiri.arrowDetect();
 	}
-
 	public void basuhanTanganKanan()
 	{
 		arrowDetectTanganKanan.arrowDetect();

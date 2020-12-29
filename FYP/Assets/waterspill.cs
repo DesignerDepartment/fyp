@@ -7,6 +7,8 @@ public class waterspill : MonoBehaviour
     ParticleSystem myWater;
     Animator particle;
 
+    public GameObject airGayung2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +18,17 @@ public class waterspill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Angle(Vector3.down, transform.forward) <= 90f)
-        {
-            myWater.Play();
-        }
-        else
-        {
-            myWater.Stop();
-        }
+        //if (airGayung2.activeSelf == true) {
+            if (Vector3.Angle(Vector3.down, transform.forward) <= 90f)
+            {
+                myWater.Play();
+            }
+            else
+            {
+                myWater.Stop();
+            }
+        //}
+        
 
     }
 

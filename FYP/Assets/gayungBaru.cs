@@ -74,8 +74,6 @@ public class gayungBaru : MonoBehaviour
     public float throwForce = 10;
 
 
-    public GameObject ambilBarangButton;
-
 
     IEnumerator unnotiGayung()
     {
@@ -104,7 +102,6 @@ public class gayungBaru : MonoBehaviour
     {
 
         namaGayung2.SetActive(true);
-        ambilBarangButton.SetActive(true);
 
     }
 
@@ -112,7 +109,6 @@ public class gayungBaru : MonoBehaviour
     {
 
         namaGayung2.SetActive(false);
-        ambilBarangButton.SetActive(false);
 
     }
 
