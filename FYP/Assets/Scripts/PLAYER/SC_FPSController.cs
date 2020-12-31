@@ -29,6 +29,8 @@ public class SC_FPSController : MonoBehaviour
 	public INTR_Baldi oldAir = null;
 	public INTR_Gayung air = null;
 
+	public INTR_Tuala tuala;
+
 	public GameObject airBilasSabun;
 
 	public Arrow red = null;
@@ -61,6 +63,7 @@ public class SC_FPSController : MonoBehaviour
 
 	[HideInInspector]
 	public bool canMove = true;
+
 
 	//curah air
 	[SerializeField] private Animator curah;
@@ -341,6 +344,19 @@ public class SC_FPSController : MonoBehaviour
 		UnityEngine.Debug.Log("Start noti gayung");
 	}
 
+	
+
+	IEnumerator backToGrabTuala()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Start grab semula");
+		//yield on a new YieldInstruction that waits for 5 seconds.
+		yield return new WaitForSeconds(4);
+		curah.SetBool("grabtuala", true);
+		curah.SetBool("lapjenazah", false);
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("done grab");
+	}
 
 
 
@@ -473,6 +489,9 @@ public class SC_FPSController : MonoBehaviour
 	public GameObject detecterCurah;
 	public GameObject detecterSiram;
 
+	public GameObject tualaDisplay;
+
+
 	void Update()
 	{
 		if (arrowSiramMerahTanganKiri.activeSelf == false && arrowSiramMerahTanganKanan.activeSelf == false && arrowSiramMerahKakiKiri.activeSelf == false && arrowSiramMerahKakiKanan.activeSelf == false && arrowSiramMerahKepala.activeSelf == false && indicatorInfoGayungGlove.activeSelf == true && indicatorInfoGayungGlove2.activeSelf == true)
@@ -519,9 +538,10 @@ public class SC_FPSController : MonoBehaviour
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// Grab Release -start- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		if (Input.GetButton("Fire1") )
-		{	
-			//Ambil barang (gayung/sabun/glove)
-			if (namaGayung.activeSelf == true || namaGlove.activeSelf == true || namaSabun.activeSelf == true || namaGayung2.activeSelf == true) { 
+		{
+			//|| namaTuala.activeSelf == true
+			//Ambil barang (gayung/sabun/glove/tuala)
+			if (namaGayung.activeSelf == true || namaGlove.activeSelf == true || namaSabun.activeSelf == true || namaGayung2.activeSelf == true ) { 
 				interactItem();
 			}
 			//Basuhan pertama (curah air) 
@@ -1047,7 +1067,7 @@ public class SC_FPSController : MonoBehaviour
 		}
 		
 
-		// process
+		// process sabun
 
 		if (Input.GetKeyDown(KeyCode.F))
 		{
@@ -1359,6 +1379,30 @@ public class SC_FPSController : MonoBehaviour
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// display Text E -end- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+		////////////////////////////////////////////////////////////////////////////////////////////////////////// lap jenazah -start- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+		if (Input.GetKeyDown(KeyCode.R)) 
+		{
+
+			if (tualaDisplay.activeSelf == true) {
+				curah.SetBool("grabtuala", true);
+				curah.SetBool("idle", false);
+				interactTuala();
+			}
+			else {
+				curah.SetBool("grabtuala", false);
+				curah.SetBool("lapjenazah", true);
+				StartCoroutine(backToGrabTuala());
+			}
+
+		}
+
+
+
+
+
+		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// SC_FPS Controller -start- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// We are grounded, so recalculate move direction based on axes
@@ -1649,6 +1693,10 @@ public class SC_FPSController : MonoBehaviour
 	public bool pegangGayung2 = false;
 	public bool pegangSabun = false;
 
+	public void interactTuala() {
+		tuala.grab();
+	}
+
 	public void interactItem() {
 
 		RaycastHit detect;
@@ -1728,6 +1776,9 @@ public class SC_FPSController : MonoBehaviour
 				}
 				//body.enabled = true;
 				UnityEngine.Debug.Log(detect.transform.name);
+
+
+				
 			}
 		}
 	}

@@ -109,6 +109,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\INTR_SabunCon.cs" />
+    <Compile Include="Assets\gayungWudhu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\INTR_GayungBilasSabun.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
@@ -134,7 +135,7 @@
     <Compile Include="Assets\Scripts\hose\RopeRoot.cs" />
     <Compile Include="Assets\Scripts\Main\MenuNav.cs" />
     <Compile Include="Assets\Scripts\Process\CollisionTanganKanan.cs" />
-    <Compile Include="Assets\gayungWudhu.cs" />
+    <Compile Include="Assets\Scripts\INTR_Tuala.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
