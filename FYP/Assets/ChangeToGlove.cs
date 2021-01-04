@@ -8,6 +8,7 @@ public class ChangeToGlove : MonoBehaviour
     Renderer rend;
     public GameObject arrowAmbilGlove;
     public GameObject glove;
+    public GameObject gloveBuang;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +21,14 @@ public class ChangeToGlove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (arrowAmbilGlove.activeSelf == false && glove.activeSelf == false) {
+        if (arrowAmbilGlove.activeSelf == false && glove.activeSelf == false && gloveBuang.activeSelf == false)
+        {
             rend.sharedMaterial = material[1];
+        }
+        else {
+
+            rend.sharedMaterial = material[0];
+
         }
         
     }

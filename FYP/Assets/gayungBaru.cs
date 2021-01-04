@@ -74,20 +74,6 @@ public class gayungBaru : MonoBehaviour
     public float throwForce = 10;
 
 
-
-    IEnumerator unnotiGayung()
-    {
-        //Print the time of when the function is first called.
-        UnityEngine.Debug.Log("Start noti gayung");
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(6);
-        //notiGayung.SetActive(false);
-        //After we have waited 5 seconds print the time again.
-        UnityEngine.Debug.Log("Start noti gayung");
-    }
-
-
-
     public void release()
     {
             GetComponent<Rigidbody>().isKinematic = false;

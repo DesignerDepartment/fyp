@@ -63,6 +63,7 @@
     <Compile Include="Assets\CollideActionSabun.cs" />
     <Compile Include="Assets\Scripts\GerakkanSugi.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Gayung.cs" />
+    <Compile Include="Assets\Scripts\INTR_Tuala.cs" />
     <Compile Include="Assets\Scripts\PLAYER2\SC_FPS PLayer.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Corpse.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Sugi.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\Process\CollKakiKiri.cs" />
+    <Compile Include="Assets\ThrowGlove.cs" />
     <Compile Include="Assets\Scripts\AnimationBody.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\INTR_Kapas.cs" />
     <Compile Include="Assets\Scripts\Process\CollisionTanganKiri.cs" />
@@ -107,10 +109,10 @@
     <Compile Include="Assets\Scripts\Process\CollKepala.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
-    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\INTR_SabunCon.cs" />
     <Compile Include="Assets\gayungWudhu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
+    <Compile Include="Assets\INTR_Tuala2.cs" />
     <Compile Include="Assets\INTR_GayungBilasSabun.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\Obj_Interaction\PadObject.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
+    <Compile Include="Assets\INTR_TongSampah.cs" />
     <Compile Include="Assets\cameraAngkat.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Scripts\Process\CollKakiKanan.cs" />
@@ -135,7 +138,6 @@
     <Compile Include="Assets\Scripts\hose\RopeRoot.cs" />
     <Compile Include="Assets\Scripts\Main\MenuNav.cs" />
     <Compile Include="Assets\Scripts\Process\CollisionTanganKanan.cs" />
-    <Compile Include="Assets\Scripts\INTR_Tuala.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

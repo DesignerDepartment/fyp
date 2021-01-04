@@ -8,6 +8,8 @@ public class INTR_Tuala : MonoBehaviour
     void Start()
     {
         tuala.SetActive(false);
+        triggerLap.SetActive(false);
+        arrowKeringkanJenazah.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,13 +31,34 @@ public class INTR_Tuala : MonoBehaviour
 
     public GameObject tuala;
     public GameObject tuala2;
-
+    public GameObject arrowLapJenazah;
+    public GameObject triggerLap;
+    public GameObject arrowKeringkanJenazah;
+    public GameObject arrowWudhuJenazah;
+    public GameObject arrowWudhukanJenazah;
+    public GameObject indicatorWudhu;
+    public GameObject arrowAmbilTuala;
 
     public void grab()
     {
         //StartCoroutine(timetakenGrabTuala());
-        tuala2.SetActive(false);
-        tuala.SetActive(true);
+        if (arrowAmbilTuala.activeSelf == true)
+        {
+            tuala2.SetActive(false);
+            tuala.SetActive(true);
+            arrowLapJenazah.SetActive(true);
+            triggerLap.SetActive(true);
+            arrowKeringkanJenazah.SetActive(true);
+            arrowWudhuJenazah.SetActive(false);
+            arrowWudhukanJenazah.SetActive(false);
+            indicatorWudhu.SetActive(false);
+        }
+        else {
+
+            UnityEngine.Debug.Log("Ikut arahan anak panah");
+
+        }
+        
     }
 
 }

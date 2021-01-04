@@ -70,7 +70,7 @@ public class INTR_Sabun : MonoBehaviour
     }
 
     public Transform playerCam;
-    public float throwForce = 10;
+    public float throwForce = 40;
 
     public void release()
     {

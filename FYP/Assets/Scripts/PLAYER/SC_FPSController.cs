@@ -163,16 +163,24 @@ public class SC_FPSController : MonoBehaviour
 		curahDetecter.SetActive(false);
 		arrowCedokAirWudhu.SetActive(false);
 		PointerSabun.SetActive(false);
-
 		notiLetakSabun.SetActive(false);
 		notiWudhu.SetActive(false);
+		buttonR.SetActive(false);
+		arrowLapJenazah.SetActive(false);
+		triggerLap.SetActive(false);
+		arrowTualaDisplay.SetActive(false);
+		gloveBuang.SetActive(false);
+		arrowBuangGlove.SetActive(false);
 
 	}
 
 	public GameObject bodyBersih;
 	public GameObject airCurahan2;
-
-
+	public GameObject arrowLapKepala;
+	public GameObject arrowLapTanganKiri;
+	public GameObject arrowLapTanganKanan;
+	public GameObject arrowLapKakiKiri;
+	public GameObject arrowLapKakiKanan;
 
 	IEnumerator timetakenCurah()
 	{
@@ -241,7 +249,8 @@ public class SC_FPSController : MonoBehaviour
 		kiri.SetBool("idle", true);
 		//body.enabled = false;
 		//playIndicator.SetActive(false);
-		arrowSabun.SetActive(true);
+		arrowBuangGlove.SetActive(true);
+		
 		ArrowAngkat.SetActive(false);
 		circleAngkat.SetActive(false);
 		Pointer.SetActive(false);
@@ -250,9 +259,7 @@ public class SC_FPSController : MonoBehaviour
 		bodyBersih.SetActive(false);
 		//characterController.enabled = true;
 		//After we have waited 5 seconds print the time again.
-
 		characterController.enabled = true;
-
 		UnityEngine.Debug.Log("Selesai ");
 	}
 
@@ -351,15 +358,69 @@ public class SC_FPSController : MonoBehaviour
 		//Print the time of when the function is first called.
 		UnityEngine.Debug.Log("Start grab semula");
 		//yield on a new YieldInstruction that waits for 5 seconds.
-		yield return new WaitForSeconds(4);
+		yield return new WaitForSeconds(2);
 		curah.SetBool("grabtuala", true);
 		curah.SetBool("lapjenazah", false);
+		kiri.SetBool("lap", false);
+		kiri.SetBool("idle", true);
 		//After we have waited 5 seconds print the time again.
 		UnityEngine.Debug.Log("done grab");
 	}
 
+	IEnumerator arrowLapKepalaHijau()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Arrow Kepala Hijau in 3 seconds");
+		//yield on a new YieldInstruction that waits for 3 seconds.
+		yield return new WaitForSeconds(3);
+		arrowLapKepala.SetActive(false);
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("Done Lap");
+	}
 
+	IEnumerator arrowLapTanganKiriHijau()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Arrow Tangan Kiri hijau in 3 seconds");
+		//yield on a new YieldInstruction that waits for 3 seconds.
+		yield return new WaitForSeconds(3);
+		arrowLapTanganKiri.SetActive(false);
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("Done Lap");
+	}
 
+	IEnumerator arrowLapTanganKananHijau()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Arrow Tangan Kanan Hijau in 3 seconds");
+		//yield on a new YieldInstruction that waits for 3 seconds.
+		yield return new WaitForSeconds(3);
+		arrowLapTanganKanan.SetActive(false);
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("Done Lap");
+	}
+
+	IEnumerator arrowLapKakiKiriHijau()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Arrow Kaki Kiri Hijau in 3 seconds");
+		//yield on a new YieldInstruction that waits for 3 seconds.
+		yield return new WaitForSeconds(3);
+		arrowLapKakiKiri.SetActive(false);
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("Done Lap");
+	}
+
+	IEnumerator arrowLapKakiKananHijau()
+	{
+		//Print the time of when the function is first called.
+		UnityEngine.Debug.Log("Arrow Kaki Kanan Hijau in 3 seconds");
+		//yield on a new YieldInstruction that waits for 3 seconds.
+		yield return new WaitForSeconds(3);
+		arrowLapKakiKanan.SetActive(false);
+		//After we have waited 5 seconds print the time again.
+		UnityEngine.Debug.Log("Done Lap");
+	}
 
 	public Transform detecter1;
 	public Transform detecter2;
@@ -463,6 +524,7 @@ public class SC_FPSController : MonoBehaviour
 	public GameObject gayung3;
 	public GameObject airGayung2;
 	public GameObject notiWudhu;
+	public GameObject arrowTualaDisplay;
 
 	/// <summary>
 	/// notification:
@@ -491,6 +553,25 @@ public class SC_FPSController : MonoBehaviour
 
 	public GameObject tualaDisplay;
 
+	public Transform triggerLapKepala;
+	public Transform triggerLapTanganKiri;
+	public Transform triggerLapTanganKanan;
+	public Transform triggerLapKakiKiri;
+	public Transform triggerLapKakiKanan;
+	public GameObject buttonR;
+	public GameObject namaTuala;
+	public GameObject namaTongSampah;
+	public GameObject arrowLapJenazah;
+	public GameObject triggerLap;
+	public ThrowGlove buangGlove;
+	public ThrowGlove buangGlove2;
+
+	public GameObject gloveDisplay;
+	public GameObject gloveBuang;
+	public GameObject arrowAmbilTuala;
+
+	public gayungBaru gayungBaru;
+	public GameObject arrowBuangGlove;
 
 	void Update()
 	{
@@ -502,9 +583,6 @@ public class SC_FPSController : MonoBehaviour
 			notiGayung.SetActive(false);
 		}
 
-
-		
-
 		showTextSabun();
 		showTextGayung();
 		showTextGayungBilasSabun();
@@ -512,10 +590,11 @@ public class SC_FPSController : MonoBehaviour
 		showTextGlove();
 		showTextKapas();
 		showTextAir();
-
+		showTextTongSampah();
+		showTextTuala();
 		showButtonCurah();
 
-		if (namaAir.activeSelf == true)
+		if (namaAir.activeSelf == true || namaTongSampah.activeSelf == true)
 		{
 			rightClick.SetActive(true);
 		}
@@ -523,7 +602,7 @@ public class SC_FPSController : MonoBehaviour
 			rightClick.SetActive(false);
 		}
 
-		if (namaGayung.activeSelf == true || namaGlove.activeSelf == true || namaSabun.activeSelf == true || namaGayung2.activeSelf == true)
+		if (namaGayung.activeSelf == true || namaGlove.activeSelf == true || namaSabun.activeSelf == true || namaGayung2.activeSelf == true || namaTuala.activeSelf == true)
 		{
 			leftClick.SetActive(true);
 		}
@@ -541,8 +620,18 @@ public class SC_FPSController : MonoBehaviour
 		{
 			//|| namaTuala.activeSelf == true
 			//Ambil barang (gayung/sabun/glove/tuala)
-			if (namaGayung.activeSelf == true || namaGlove.activeSelf == true || namaSabun.activeSelf == true || namaGayung2.activeSelf == true ) { 
+			if ((namaGayung.activeSelf == true || namaGlove.activeSelf == true || namaSabun.activeSelf == true || namaGayung2.activeSelf == true) && namaTuala.activeSelf == false ) {
 				interactItem();
+			}
+			else if (namaTuala.activeSelf == true) {
+
+				if (arrowAmbilTuala.activeSelf == true) {
+
+					curah.SetBool("grabtuala", true);
+					curah.SetBool("idle", false);
+					interactTuala();
+				}
+				
 			}
 			//Basuhan pertama (curah air) 
 			else if (gayungIndicator.activeSelf == true)
@@ -658,7 +747,7 @@ public class SC_FPSController : MonoBehaviour
 			{
 				//public GameObject buihKakiStay;
 				//public GameObject buihKakiAnimate;
-				if (((Vector3.Distance(transform.position, detecter7.position) <= 2) || (Vector3.Distance(transform.position, detecter13.position) <= 2) || (Vector3.Distance(transform.position, detecter8.position) <= 2) ||  (Vector3.Distance(transform.position, detecter10.position) <= 2) || (Vector3.Distance(transform.position, detecter12.position) <= 2) || Vector3.Distance(transform.position, detecter1.position) <= 2) || (Vector3.Distance(transform.position, detecter2.position) <= 2) || (Vector3.Distance(transform.position, detecter4.position) <= 2) || (Vector3.Distance(transform.position, detecter6.position) <= 2))
+				if (((Vector3.Distance(transform.position, detecter7.position) <= 2) || (Vector3.Distance(transform.position, detecter13.position) <= 2) || (Vector3.Distance(transform.position, detecter8.position) <= 2) || (Vector3.Distance(transform.position, detecter10.position) <= 2) || (Vector3.Distance(transform.position, detecter12.position) <= 2) || Vector3.Distance(transform.position, detecter1.position) <= 2) || (Vector3.Distance(transform.position, detecter2.position) <= 2) || (Vector3.Distance(transform.position, detecter4.position) <= 2) || (Vector3.Distance(transform.position, detecter6.position) <= 2))
 				{
 					//detect.SetActive(true);
 					curah.SetBool("sabun", true);
@@ -685,7 +774,7 @@ public class SC_FPSController : MonoBehaviour
 					}
 
 					//tanganKiri
-					if ((Vector3.Distance(transform.position, detecter2.position) <= 2) ||(Vector3.Distance(transform.position, detecter4.position) <= 2))
+					if ((Vector3.Distance(transform.position, detecter2.position) <= 2) || (Vector3.Distance(transform.position, detecter4.position) <= 2))
 					{
 						buihTanganKiriStay.SetActive(true);
 						buihTanganKiriAnimate.SetActive(true);
@@ -694,7 +783,7 @@ public class SC_FPSController : MonoBehaviour
 					}
 
 					//tanganKanan
-					if ((Vector3.Distance(transform.position, detecter8.position) <= 2) ||  (Vector3.Distance(transform.position, detecter10.position) <= 2))
+					if ((Vector3.Distance(transform.position, detecter8.position) <= 2) || (Vector3.Distance(transform.position, detecter10.position) <= 2))
 					{
 						buihTanganKananStay.SetActive(true);
 						buihTanganKananAnimate.SetActive(true);
@@ -762,38 +851,70 @@ public class SC_FPSController : MonoBehaviour
 
 		if (Input.GetButton("Fire2"))
 		{
-			if (nakAmbil == true)
-			{
-				if (gayung1.activeSelf == true && arrowCedokAirWudhu.activeSelf == false)
+
+				if (gloveDisplay.activeSelf == false && gloveBuang.activeSelf == false)
 				{
-					cedokAir();
-					arrowBasuhan.SetActive(true);
-					nakAmbil = false;
+					
+					arrowBuangGlove.SetActive(false);
+					gloveBuang.SetActive(true);
+					buangGlove.release();
+					buangGlove2.release();
+					arrowSabun.SetActive(true);
 
 				}
-				else if (gayung2.activeSelf == true && arrowCedokAirWudhu.activeSelf == false)
-				{
-					cedokAirBilasSabun();
-					nakAmbil = false;
-					notiLetakSabun.SetActive(false);
 
-				}
-				else if (gayung2.activeSelf == true && arrowCedokAirWudhu.activeSelf == true)
+				if (nakAmbil == true)
 				{
-					cedokAirWudhu();
-					arrowWudhukanJenazah.SetActive(true);
-					nakAmbil = false;
-					notiWudhu.SetActive(false);
+					if (gayung1.activeSelf == true && arrowCedokAirWudhu.activeSelf == false)
+					{
+						cedokAir();
+						arrowBasuhan.SetActive(true);
+						nakAmbil = false;
+
+					}
+					else if (gayung2.activeSelf == true && arrowCedokAirWudhu.activeSelf == false)
+					{
+						cedokAirBilasSabun();
+						nakAmbil = false;
+						notiLetakSabun.SetActive(false);
+
+					}
+					else if (gayung2.activeSelf == true && arrowCedokAirWudhu.activeSelf == true)
+					{
+						cedokAirWudhu();
+						arrowWudhukanJenazah.SetActive(true);
+						nakAmbil = false;
+						notiWudhu.SetActive(false);
+					}
+					else
+					{
+						//sila ambil gayung noti
+					}
 				}
-				else { 
-					//sila ambil gayung noti
+				else if (gayungBilasSabun.activeSelf == true)
+				{
+
+					if ((buihKakiKiriStay.activeSelf == false && buihKakiKananStay.activeSelf == false && buihTanganKiriStay.activeSelf == false && buihTanganKananStay.activeSelf == false && buihKepalaStay.activeSelf == false) && (arrowWudhuKakiKanan.activeSelf == false && arrowWudhuKakiKiri.activeSelf == false && arrowWudhuKepala.activeSelf == false && arrowWudhuLenganKanan.activeSelf == false && arrowWudhuLenganKiri.activeSelf == false))
+					{
+						gayungBaru.release();
+						curah.SetBool("Grabbed", false);
+						curah.SetBool("idle", true);
+					}
+					else
+					{ 
+						//noti ikut anak panah
+					}
 				}
-			}
-			else
-			{
-				releaseObject();
-				nakAmbil = false;
-			}
+				else
+				{
+						releaseObject();
+						nakAmbil = false;
+				}
+
+			
+
+
+			
 		}
 
 		// - active arrow amik gayung 2 - 
@@ -1233,10 +1354,10 @@ public class SC_FPSController : MonoBehaviour
 					curah.SetBool("angkatMayatNew", true);
 					kiri.SetBool("tekanPerut",true);
 					kiri.SetBool("idle", false);
-
+					
 					characterController.enabled = false;
 					StartCoroutine(timetakenAngkatMayat());
-
+					
 				}
 				else
 				{
@@ -1306,6 +1427,12 @@ public class SC_FPSController : MonoBehaviour
 					kiri.SetBool("wudhu", true);
 					kiri.SetBool("idle", false);
 					StartCoroutine(timetakenWudhu());
+
+					if (arrowWudhuLenganKanan.activeSelf == false && arrowWudhuLenganKiri.activeSelf == false && arrowWudhuKakiKanan.activeSelf == false && arrowWudhuKakiKiri.activeSelf == false && arrowWudhuKepala.activeSelf == false) {
+
+						airGayung2.SetActive(false);
+						arrowTualaDisplay.SetActive(true);
+					}
 				}
 				else if ((Vector3.Distance(transform.position, triggerwudhuTanganKiri.position) <= 2))
 				{
@@ -1317,6 +1444,13 @@ public class SC_FPSController : MonoBehaviour
 					kiri.SetBool("wudhu", true);
 					kiri.SetBool("idle", false);
 					StartCoroutine(timetakenWudhu());
+
+					if (arrowWudhuLenganKanan.activeSelf == false && arrowWudhuLenganKiri.activeSelf == false && arrowWudhuKakiKanan.activeSelf == false && arrowWudhuKakiKiri.activeSelf == false && arrowWudhuKepala.activeSelf == false)
+					{
+
+						airGayung2.SetActive(false);
+						arrowTualaDisplay.SetActive(true);
+					}
 				}
 				else if ((Vector3.Distance(transform.position, triggerwudhuKakiKanan.position) <= 2))
 				{
@@ -1328,6 +1462,13 @@ public class SC_FPSController : MonoBehaviour
 					kiri.SetBool("wudhu", true);
 					kiri.SetBool("idle", false);
 					StartCoroutine(timetakenWudhu());
+
+					if (arrowWudhuLenganKanan.activeSelf == false && arrowWudhuLenganKiri.activeSelf == false && arrowWudhuKakiKanan.activeSelf == false && arrowWudhuKakiKiri.activeSelf == false && arrowWudhuKepala.activeSelf == false)
+					{
+
+						airGayung2.SetActive(false);
+						arrowTualaDisplay.SetActive(true);
+					}
 				}
 				else if ((Vector3.Distance(transform.position, triggerwudhuKakiKiri.position) <= 2))
 				{
@@ -1339,6 +1480,13 @@ public class SC_FPSController : MonoBehaviour
 					kiri.SetBool("wudhu", true);
 					kiri.SetBool("idle", false);
 					StartCoroutine(timetakenWudhu());
+
+					if (arrowWudhuLenganKanan.activeSelf == false && arrowWudhuLenganKiri.activeSelf == false && arrowWudhuKakiKanan.activeSelf == false && arrowWudhuKakiKiri.activeSelf == false && arrowWudhuKepala.activeSelf == false)
+					{
+
+						airGayung2.SetActive(false);
+						arrowTualaDisplay.SetActive(true);
+					}
 				}
 				else if ((Vector3.Distance(transform.position, triggerwudhuKepala.position) <= 2))
 				{
@@ -1350,6 +1498,13 @@ public class SC_FPSController : MonoBehaviour
 					kiri.SetBool("wudhu", true);
 					kiri.SetBool("idle", false);
 					StartCoroutine(timetakenWudhu());
+
+					if (arrowWudhuLenganKanan.activeSelf == false && arrowWudhuLenganKiri.activeSelf == false && arrowWudhuKakiKanan.activeSelf == false && arrowWudhuKakiKiri.activeSelf == false && arrowWudhuKepala.activeSelf == false)
+					{
+
+						airGayung2.SetActive(false);
+						arrowTualaDisplay.SetActive(true);
+					}
 				}
 				else {
 
@@ -1368,7 +1523,7 @@ public class SC_FPSController : MonoBehaviour
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// wudhu -end- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-		////////////////////////////////////////////////////////////////////////////////////////////////////////// display Text E -start- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////// display Text E -start- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		if (Vector3.Distance(transform.position, pointerAngkatMayat.position) <= 1)
 		{
 			buttonE.SetActive(true);
@@ -1379,30 +1534,88 @@ public class SC_FPSController : MonoBehaviour
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// display Text E -end- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+		////////////////////////////////////////////////////////////////////////////////////////////////////////// display text R -start- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		if (triggerLap.activeSelf == true) {
+			if ((Vector3.Distance(transform.position, triggerLapKepala.position) <= 2) || (Vector3.Distance(transform.position, triggerLapTanganKiri.position) <= 2) || (Vector3.Distance(transform.position, triggerLapTanganKanan.position) <= 2) || (Vector3.Distance(transform.position, triggerLapKakiKiri.position) <= 2) || (Vector3.Distance(transform.position, triggerLapKakiKanan.position) <= 2))
+			{
+				buttonR.SetActive(true);
+			}
+			else
+			{
+				buttonR.SetActive(false);
+			}
+		}
+		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// lap jenazah -start- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 		if (Input.GetKeyDown(KeyCode.R)) 
 		{
 
-			if (tualaDisplay.activeSelf == true) {
-				curah.SetBool("grabtuala", true);
-				curah.SetBool("idle", false);
-				interactTuala();
+			if (arrowLapJenazah.activeSelf == true)
+			{
+
+				if ((Vector3.Distance(transform.position, triggerLapKepala.position) <= 2) && buttonR.activeSelf == true)
+				{
+					curah.SetBool("grabtuala", false);
+					curah.SetBool("lapjenazah", true);
+					kiri.SetBool("lap", true);
+					kiri.SetBool("idle", false);
+					StartCoroutine(backToGrabTuala());
+					StartCoroutine(arrowLapKepalaHijau());
+				}
+				else if ((Vector3.Distance(transform.position, triggerLapTanganKiri.position) <= 2) && buttonR.activeSelf == true)
+				{
+					curah.SetBool("grabtuala", false);
+					curah.SetBool("lapjenazah", true);
+					kiri.SetBool("lap", true);
+					kiri.SetBool("idle", false);
+					StartCoroutine(backToGrabTuala());
+					StartCoroutine(arrowLapTanganKiriHijau());
+				}
+				else if ((Vector3.Distance(transform.position, triggerLapTanganKanan.position) <= 2) && buttonR.activeSelf == true)
+				{
+					curah.SetBool("grabtuala", false);
+					curah.SetBool("lapjenazah", true);
+					kiri.SetBool("lap", true);
+					kiri.SetBool("idle", false);
+					StartCoroutine(backToGrabTuala());
+					StartCoroutine(arrowLapTanganKananHijau());
+				}
+				else if ((Vector3.Distance(transform.position, triggerLapKakiKiri.position) <= 2) && buttonR.activeSelf == true)
+				{
+					curah.SetBool("grabtuala", false);
+					curah.SetBool("lapjenazah", true);
+					kiri.SetBool("lap", true);
+					kiri.SetBool("idle", false);
+					StartCoroutine(backToGrabTuala());
+					StartCoroutine(arrowLapKakiKiriHijau());
+				}
+				else if ((Vector3.Distance(transform.position, triggerLapKakiKanan.position) <= 2) && buttonR.activeSelf == true)
+				{
+					curah.SetBool("grabtuala", false);
+					curah.SetBool("lapjenazah", true);
+					kiri.SetBool("lap", true);
+					kiri.SetBool("idle", false);
+					StartCoroutine(backToGrabTuala());
+					StartCoroutine(arrowLapKakiKananHijau());
+				}
+				else
+				{
+					errorSabun();
+					StartCoroutine(unShowInfoErrorSabun());
+				}
 			}
 			else {
-				curah.SetBool("grabtuala", false);
-				curah.SetBool("lapjenazah", true);
-				StartCoroutine(backToGrabTuala());
+				infoErrorSabun.SetActive(true);
+				StartCoroutine(unShowInfoErrorSabun());
 			}
-
 		}
 
 
-
-
-
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////// SC_FPS Controller -start- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// We are grounded, so recalculate move direction based on axes
@@ -1689,6 +1902,56 @@ public class SC_FPSController : MonoBehaviour
 		}
 	}
 
+	public INTR_Tuala2 oldTuala = null;
+	public INTR_TongSampah oldTongSampah = null;
+
+	
+	public void showTextTuala()
+	{
+
+		RaycastHit detect;
+
+		UnityEngine.Debug.Log("TextTuala");
+		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out detect, range))
+		{
+
+			INTR_Tuala2 tuala = detect.transform.GetComponent<INTR_Tuala2>();
+			if (tuala != null)
+			{
+				UnityEngine.Debug.Log("TextTuala2");
+				oldTuala = tuala;
+				tuala.showNamaTuala();
+				leftClick.SetActive(true);
+
+			}
+			else oldTuala.unshowNamaTuala();
+			leftClick.SetActive(false);
+			//nakAmbil = false;
+		}
+	}
+
+	public void showTextTongSampah()
+	{
+
+		RaycastHit detect;
+
+		UnityEngine.Debug.Log("TextTuala");
+		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out detect, range))
+		{
+
+			INTR_TongSampah tongSampah = detect.transform.GetComponent<INTR_TongSampah>();
+			if (tongSampah != null)
+			{
+
+				oldTongSampah = tongSampah;
+				tongSampah.showNamaTongSampah();
+
+			}
+			else oldTongSampah.unshowNamaTongSampah();
+			//nakAmbil = false;
+		}
+	}
+
 	public bool pegangGayung = false;
 	public bool pegangGayung2 = false;
 	public bool pegangSabun = false;
@@ -1822,6 +2085,7 @@ public class SC_FPSController : MonoBehaviour
 	public void releaseObject() {
 
 		if (!not_full) {
+
 
 			if (pegangGayung == true)
 			{
