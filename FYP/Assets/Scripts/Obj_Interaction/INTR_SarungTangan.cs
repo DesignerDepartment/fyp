@@ -26,7 +26,7 @@ public class INTR_SarungTangan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        notiAngkatJenazah.SetActive(false);
     }
 
     public GameObject circleAngkat;
@@ -45,7 +45,9 @@ public class INTR_SarungTangan : MonoBehaviour
     public GameObject arrowMerahKepala;
     public GameObject infoGayungGlove;
     public GameObject arrowGlove;
+    public GameObject Glove2;
 
+    public GameObject notiAngkatJenazah;
 
     public void grab()
     {
@@ -55,6 +57,11 @@ public class INTR_SarungTangan : MonoBehaviour
         //changeToGloveLeft();
         //rend.sharedMaterial = material[1];
         Glove.SetActive(false);
+
+        //if (Glove2.activeSelf == true) {
+        //    Glove.SetActive(false);
+        //}
+
         ArrowIndicatorGlove.SetActive(false);
         indicatorInfoGayungGlove2.SetActive(false);
 
@@ -67,7 +74,7 @@ public class INTR_SarungTangan : MonoBehaviour
             Pointer.SetActive(true);
         }
 
-       
+        notiAngkatJenazah.SetActive(true);
 
     }
 

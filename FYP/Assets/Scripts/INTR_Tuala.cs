@@ -52,10 +52,11 @@ public class INTR_Tuala : MonoBehaviour
             arrowWudhuJenazah.SetActive(false);
             arrowWudhukanJenazah.SetActive(false);
             indicatorWudhu.SetActive(false);
+            arrowAmbilTuala.SetActive(false);
         }
         else {
 
-            UnityEngine.Debug.Log("Ikut arahan anak panah");
+            Debug.Log("Ikut arahan anak panah");
 
         }
         

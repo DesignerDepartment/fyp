@@ -26,4 +26,12 @@ public class ThrowGlove : MonoBehaviour
 
     }
 
+    public void release2()
+    {
+
+        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().AddForce(playerCam.forward * throwForce);
+
+    }
+
 }

@@ -84,12 +84,12 @@ public class INTR_Sabun : MonoBehaviour
 
         gayungBilasSabun.SetActive(true);
         gayungBasuhanPertama.SetActive(false);
-
         arrowProcessSabun.SetActive(false);
-
         arrowSabunkanJenazah.SetActive(false);
-
         arrowGayung2.SetActive(true);
+
+        
+
     }
 
 

@@ -77,57 +77,29 @@ public class INTR_Gayung : MonoBehaviour
     public GameObject arrowHijauKakiKanan;
     public GameObject arrowHijauKakiKiri;
     public GameObject arrowHijauKepala;
-
     public GameObject arrowHijau;
-
     public GameObject arrowMerahTanganKiri;
     public GameObject arrowMerahTanganKanan;
     public GameObject arrowMerahKakiKanan;
     public GameObject arrowMerahKakiKiri;
     public GameObject arrowMerahKepala;
-
     public GameObject indicatorArrowAngkat;
-
-    
     public GameObject ArrowGlove;
     public GameObject ArrowIndicatorGlove;
     public GameObject circleAngkat;
     public GameObject Pointer;
     public GameObject ArrowAngkat;
-
     public GameObject errorSiram;
-
     public GameObject notiGayung;
-
-
     public GameObject basuhanPertama;
 
-
-    IEnumerator unnotiGayung()
-    {
-        //Print the time of when the function is first called.
-        UnityEngine.Debug.Log("Start noti gayung");
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(6);
-        notiGayung.SetActive(false);
-        //After we have waited 5 seconds print the time again.
-        UnityEngine.Debug.Log("Start noti gayung");
-    }
     public void release() {
-
-        //handle.transform.SetParent(pointerTempatGayung.transform);
-        //handle.transform.position = pointerTempatGayung.transform.position;
-        //handle.transform.forward = pointerTempatGayung.transform.forward;
-
-        //handle.transform.SetParent(empty.transform);
-        //handle.transform.SetParent(null);
-
         if (arrowMerahTanganKanan.activeSelf == true && arrowMerahTanganKiri.activeSelf == true && arrowMerahKakiKanan.activeSelf == true && arrowMerahKakiKiri.activeSelf == true)
         {
             errorSiram.SetActive(true);
         }
-        else {
-
+        else
+        {
             if (arrowMerahTanganKanan.activeSelf == false && arrowMerahTanganKiri.activeSelf == false && arrowMerahKakiKanan.activeSelf == false && arrowMerahKakiKiri.activeSelf == false)
             {
                 arrowHijau.SetActive(false);
@@ -136,13 +108,8 @@ public class INTR_Gayung : MonoBehaviour
 
             if (arrowHijau.activeSelf == false && indicatorArrowAngkat.activeSelf == false)
             {
-
                 ArrowGlove.SetActive(true);
-                
-                //
             }
-
-
 
             GetComponent<Rigidbody>().isKinematic = false;
             handle.transform.SetParent(null);
@@ -153,34 +120,18 @@ public class INTR_Gayung : MonoBehaviour
 
             var dr = LangkahKedua.GetComponent<Renderer>();
             dr.material.SetColor("_Color", Color.green);
-
-            
-
             basuhanPertama.SetActive(false);
-
-
-
         }
-
-        
-
-        //handle.transform.localPosition = new Vector3(6.747f, 2.429f, 10.524f);
-
-
     }
 
     public void showTextGayung()
     {
-
         namaGayung.SetActive(true);
-
     }
 
     public void unshowTextGayung()
     {
-
         namaGayung.SetActive(false);
-
     }
 
     public void showAir()
